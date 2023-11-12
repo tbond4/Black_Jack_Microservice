@@ -44,6 +44,6 @@ def  write_score(score):
 
     with open('hand_score.txt', 'w') as f:
         f.write(str(score))
-
+    print("Score delivered")
 if __name__ == "__main__":
     main()
