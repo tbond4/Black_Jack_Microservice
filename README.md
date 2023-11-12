@@ -8,6 +8,3 @@ The microservice will read that hand and calulate the score, in this case 17, an
 # UML Sequence Diagram
 ![UML Sequence Diagram](./UML_Diagram.png "UML Sequence Diagram")
 
-# Demonstration
-
-![Example Video](./cs361Assignment9.webm) "Demonstration Video")
