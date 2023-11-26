@@ -15,37 +15,41 @@ def calculate_score(hand):
     """Takes in hand[] and returns hand calulated score"""
 
     score = 0
-    num_aces = 0
+    high_ace_score = 0
 
     # Moves Aces to the end of the array
-    while 'A' in hand:
-        num_aces +=1
+    if 'A' in hand:
         hand.remove('A')
-
-    while num_aces > 0:
         hand.append('A')
-        num_aces -= 1
 
     # Iterate through hand adding to score
     for card in hand:
         if card == 'J' or card == 'K' or card == 'Q':
             score += 10
-        elif card == 'A' and score + 11 <= 21:
-            score += 11
-        elif card == 'A' and score + 11 >= 21:
+        elif card == 'A':
+            high_ace_score = score
             score += 1
-        elif 2 <= int(card) <= 9:
+            high_ace_score += 11
+        elif 2 <= int(card) <= 10:
             score += int(card)
         else:
             score = "Invalid Hand"
-    return score
+    return [score, high_ace_score]
 
-def  write_score(score):
+def  write_score(score_list):
     """Writes the hand score to hand_score.txt file"""
 
-    with open('hand_score.txt', 'w') as f:
-        f.write(str(score))
-    
+    score, high_ace_score = score_list
+
+    if high_ace_score == 0:
+        with open('hand_score.txt', 'w') as f:
+            f.write(str(score))
+    else:
+        with open('hand_score.txt', 'w') as f:
+            f.write(str(score))
+            f.write(',')
+            f.write(str(high_ace_score))
+
 
 while True:
    write_score(calculate_score(read_hand()))
